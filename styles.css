@@ -1,60 +1,71 @@
-body {
-  margin:0;
-  font-family:Inter,sans-serif;
+/* Navbar */
+.navbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
   background:#071023;
-  color:#e6eef8;
-  text-align:center;
+  color:#6ee7b7;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-.header {
-  padding:20px;
+.logo {
+  font-weight:700;
+  font-size:18px;
 }
 
-.avatar {
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  border:2px solid rgba(255,255,255,0.05);
-  margin:0 auto;
+.hamburger {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  width:24px;
+  height:18px;
+  cursor:pointer;
 }
 
-.name {
-  margin:10px 0 4px;
-  font-size:20px;
-  font-weight:600;
+.hamburger span {
+  display:block;
+  height:3px;
+  background:#6ee7b7;
+  border-radius:2px;
+  transition:0.3s;
 }
 
-.bio {
-  margin:0 0 16px;
-  color:#9aa9bf;
-  font-size:14px;
-}
+.hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2) { opacity:0; }
+.hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
-.links {
+/* Sidebar */
+.sidebar {
+  position:fixed;
+  top:0;
+  left:-250px;
+  width:250px;
+  height:100%;
+  background:#041124;
+  padding-top:60px;
   display:flex;
   flex-direction:column;
   gap:12px;
-  max-width:400px;
-  margin:0 auto 20px;
+  transition:0.3s;
+  z-index:999;
 }
 
-.link {
-  padding:12px;
-  text-decoration:none;
+.sidebar.open {
+  left:0;
+}
+
+.sidebar a {
+  padding:12px 20px;
   color:#6ee7b7;
-  background:rgba(255,255,255,0.02);
-  border-radius:10px;
-  border:1px solid rgba(110,231,183,0.06);
-  font-weight:600;
+  text-decoration:none;
+  font-weight:500;
+  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-.link:hover {
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(0,0,0,0.4);
-}
-
-.footer {
-  margin-top:16px;
-  color:#9aa9bf;
-  font-size:13px;
+.sidebar a:hover {
+  background:rgba(110,231,183,0.05);
 }
