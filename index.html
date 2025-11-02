@@ -3,35 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Tuttio Links</title>
+<title>Volt Vision / Tuttio Links</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo">Volt Vision</div>
+  <div class="hamburger" onclick="toggleMenu(this)">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<div id="mySidebar" class="sidebar">
+  <a href="index.html" onclick="toggleMenuFromLink()">Home</a>
+  <a href="order.html" onclick="toggleMenuFromLink()">Order From Us!</a>
+  <a href="about.html" onclick="toggleMenuFromLink()">About Us</a>
+  <a href="contact.html" onclick="toggleMenuFromLink()">Contact Us!</a>
+  <a href="locations.html" onclick="toggleMenuFromLink()">Locations</a>
+  <a href="review.html" onclick="toggleMenuFromLink()">Rate Us!</a>
+</div>
+
+<!-- Main Content -->
 <header class="header">
   <img class="avatar" src="https://via.placeholder.com/110" alt="Avatar">
   <h1 class="name">Your Name / Tuttio</h1>
   <p class="bio">Short description about your tuttio. Links below.</p>
 </header>
-<div class="navbar">
-    <div class="logo">Volt Vision</div>
-    <div class="hamburger" onclick="toggleMenu(this)">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
 
-  <!-- Sidebar -->
-  <div id="mySidebar" class="sidebar">
-    <a href="index.html" onclick="toggleMenuFromLink()">Home</a>
-    <a href="order.html" onclick="toggleMenuFromLink()">Order From Us!</a>
-    <a href="about.html" onclick="toggleMenuFromLink()">About Us</a>
-    <a href="contact.html" onclick="toggleMenuFromLink()">Contact Us!</a>
-    <a href="locations.html" onclick="toggleMenuFromLink()">Locations</a>
-    <a href="review.html" onclick="toggleMenuFromLink()">Rate Us!</a>
-  </div>
-  
 <nav class="links">
   <a class="link" href="https://twitter.com/" target="_blank">Twitter</a>
   <a class="link" href="https://instagram.com/" target="_blank">Instagram</a>
@@ -44,6 +47,19 @@
 <footer class="footer">
   <small>Made for your tuttio · Hosted on GitHub Pages</small>
 </footer>
+
+<script>
+function toggleMenu(hamburger){
+  hamburger.classList.toggle("active");
+  const sidebar = document.getElementById("mySidebar");
+  sidebar.classList.toggle("open");
+}
+
+function toggleMenuFromLink(){
+  document.getElementById("mySidebar").classList.remove("open");
+  document.querySelector(".hamburger").classList.remove("active");
+}
+</script>
 
 </body>
 </html>
