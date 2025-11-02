@@ -3,57 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Tuttio Linkpage</title>
+<title>Your Tuttio Links</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="header">
-    <div class="header-inner">
-      <img class="avatar" src="https://via.placeholder.com/110" alt="Avatar">
-      <h1 class="name">Your Name / Tuttio</h1>
-      <button id="hamburger" class="hamburger" aria-label="Toggle menu">☰</button>
+
+<header class="header">
+  <img class="avatar" src="https://via.placeholder.com/110" alt="Avatar">
+  <h1 class="name">Volt Vision</h1>
+  <p class="bio">blah blah ill enter this later.</p>
+</header>
+
+<!-- Hamburger for mobile -->
+<button id="hamburger" class="hamburger" aria-label="Toggle menu">☰</button>
+
+<nav id="navMenu" class="links">
+  <a class="link" href="https://twitter.com/" target="_blank">Twitter</a>
+  <a class="link" href="https://instagram.com/" target="_blank">Instagram</a>
+  <a class="link" href="https://youtube.com/" target="_blank">YouTube</a>
+  <a class="link" href="https://tiktok.com/" target="_blank">TikTok</a>
+  <a class="link" href="mailto:you@example.com">Email</a>
+  <a class="link" href="https://yourstore.example/" target="_blank">Merch / Store</a>
+  <a class="link secondary" href="#coupons">Coupons & Offers</a>
+</nav>
+
+<main class="page">
+  <section id="coupons" class="coupons">
+    <h2>Coupons & Offers</h2>
+    <div class="coupon-list">
+      <div class="coupon">
+        <strong>10% OFF</strong>
+        <span>USE: TUTTIO10 — First order</span>
+      </div>
+      <div class="coupon">
+        <strong>Free Shipping</strong>
+        <span>USE: SHIPFREE — Orders $25+</span>
+      </div>
     </div>
-    <nav id="navMenu" class="nav-menu">
-      <a class="link" href="https://twitter.com/" target="_blank">Twitter</a>
-      <a class="link" href="https://instagram.com/" target="_blank">Instagram</a>
-      <a class="link" href="https://youtube.com/" target="_blank">YouTube</a>
-      <a class="link" href="https://tiktok.com/" target="_blank">TikTok</a>
-      <a class="link" href="mailto:you@example.com">Email</a>
-      <a class="link" href="https://yourstore.example/" target="_blank">Merch / Store</a>
-      <a class="link secondary" href="#coupons">Coupons & Offers</a>
-    </nav>
-  </header>
+  </section>
+  <footer class="footer">
+    <small>Made for your tuttio · Hosted on GitHub Pages</small>
+  </footer>
+</main>
 
-  <main class="page">
-    <section id="coupons" class="coupons">
-      <h2>Coupons & Offers</h2>
-      <div class="coupon-list">
-        <div class="coupon">
-          <strong>10% OFF</strong>
-          <span>USE: TUTTIO10 — Valid on first order</span>
-        </div>
-        <div class="coupon">
-          <strong>Free Shipping</strong>
-          <span>USE: SHIPFREE — Orders $25+</span>
-        </div>
-      </div>
-    </section>
-    <footer class="footer">
-      <small>Made for your tuttio · Hosted on GitHub Pages</small>
-    </footer>
-  </main>
-
-  <div id="couponPopup" class="popup hidden" aria-hidden="true">
-    <div class="popup-inner">
-      <button id="closePopup" class="close" aria-label="Close popup">×</button>
-      <h3>Special Offer</h3>
-      <p>Scroll bonus: take 15% off with code <strong>TUTTIO15</strong></p>
-      <div class="popup-actions">
-        <button id="useCode" class="cta">Copy Code</button>
-        <button id="dismissOnce" class="muted">Don't show again</button>
-      </div>
+<!-- Coupon popup -->
+<div id="couponPopup" class="popup hidden" aria-hidden="true">
+  <div class="popup-inner">
+    <button id="closePopup" class="close" aria-label="Close popup">×</button>
+    <h3>Special Offer</h3>
+    <p>Scroll bonus: take 15% off with code <strong>TUTTIO15</strong></p>
+    <div class="popup-actions">
+      <button id="useCode" class="cta">Copy Code</button>
+      <button id="dismissOnce" class="muted">Don't show again</button>
     </div>
   </div>
+</div>
 
 <script>
   // Hamburger toggle
@@ -63,7 +67,7 @@
     navMenu.classList.toggle('open');
   });
 
-  // Popup behavior
+  // Popup scroll
   const popup = document.getElementById('couponPopup');
   const closeBtn = document.getElementById('closePopup');
   const dismissOnce = document.getElementById('dismissOnce');
