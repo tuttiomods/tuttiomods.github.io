@@ -13,7 +13,25 @@
   <h1 class="name">Your Name / Tuttio</h1>
   <p class="bio">Short description about your tuttio. Links below.</p>
 </header>
+<div class="navbar">
+    <div class="logo">Volt Vision</div>
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <a href="index.html" onclick="toggleMenuFromLink()">Home</a>
+    <a href="order.html" onclick="toggleMenuFromLink()">Order From Us!</a>
+    <a href="about.html" onclick="toggleMenuFromLink()">About Us</a>
+    <a href="contact.html" onclick="toggleMenuFromLink()">Contact Us!</a>
+    <a href="locations.html" onclick="toggleMenuFromLink()">Locations</a>
+    <a href="review.html" onclick="toggleMenuFromLink()">Rate Us!</a>
+  </div>
+  
 <nav class="links">
   <a class="link" href="https://twitter.com/" target="_blank">Twitter</a>
   <a class="link" href="https://instagram.com/" target="_blank">Instagram</a>
