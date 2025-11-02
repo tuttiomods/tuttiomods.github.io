@@ -1,32 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TuttioMods</title>
-  <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Links to socials, coupons, and info about my tuttio.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Tuttio Linkpage</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="page">
-    <header class="profile">
-      <!-- Replace image src with your avatar path or remove the <img> -->
-      <img class="avatar" src="https://via.placeholder.com/160" alt="avatar">
+  <header class="header">
+    <div class="header-inner">
+      <img class="avatar" src="https://via.placeholder.com/110" alt="Avatar">
       <h1 class="name">Your Name / Tuttio</h1>
-      <p class="bio">Short line about your tuttio. Links below for socials, merch and coupons.</p>
-    </header>
-
-    <section class="links">
-      <!-- Edit labels and hrefs -->
-      <a class="link" href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
-      <a class="link" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-      <a class="link" href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a>
-      <a class="link" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+      <button id="hamburger" class="hamburger" aria-label="Toggle menu">☰</button>
+    </div>
+    <nav id="navMenu" class="nav-menu">
+      <a class="link" href="https://twitter.com/" target="_blank">Twitter</a>
+      <a class="link" href="https://instagram.com/" target="_blank">Instagram</a>
+      <a class="link" href="https://youtube.com/" target="_blank">YouTube</a>
+      <a class="link" href="https://tiktok.com/" target="_blank">TikTok</a>
       <a class="link" href="mailto:you@example.com">Email</a>
-      <a class="link" href="https://yourstore.example/" target="_blank" rel="noopener">Merch / Store</a>
+      <a class="link" href="https://yourstore.example/" target="_blank">Merch / Store</a>
       <a class="link secondary" href="#coupons">Coupons & Offers</a>
-    </section>
+    </nav>
+  </header>
 
+  <main class="page">
     <section id="coupons" class="coupons">
       <h2>Coupons & Offers</h2>
       <div class="coupon-list">
@@ -40,14 +38,12 @@
         </div>
       </div>
     </section>
-
     <footer class="footer">
       <small>Made for your tuttio · Hosted on GitHub Pages</small>
     </footer>
   </main>
 
-  <!-- Coupon popup -->
-  <div id="couponPopup" class="popup hidden" aria-hidden="true" role="dialog" aria-label="Coupon">
+  <div id="couponPopup" class="popup hidden" aria-hidden="true">
     <div class="popup-inner">
       <button id="closePopup" class="close" aria-label="Close popup">×</button>
       <h3>Special Offer</h3>
@@ -59,66 +55,55 @@
     </div>
   </div>
 
-  <script>
-    // Popup behavior: show when user scrolls down a bit.
-    (function () {
-      const popup = document.getElementById('couponPopup');
-      const closeBtn = document.getElementById('closePopup');
-      const dismissOnce = document.getElementById('dismissOnce');
-      const useCode = document.getElementById('useCode');
-      const SCROLL_THRESHOLD = 250; // px
+<script>
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+  });
 
-      // If user already dismissed, do nothing.
-      if (localStorage.getItem('tuttio_coupon_seen') === 'true') {
-        return;
+  // Popup behavior
+  const popup = document.getElementById('couponPopup');
+  const closeBtn = document.getElementById('closePopup');
+  const dismissOnce = document.getElementById('dismissOnce');
+  const useCode = document.getElementById('useCode');
+  const SCROLL_THRESHOLD = 250;
+
+  if (localStorage.getItem('tuttio_coupon_seen') !== 'true') {
+    let shown = false;
+    function showPopup() {
+      if (shown) return;
+      popup.classList.remove('hidden');
+      popup.setAttribute('aria-hidden', 'false');
+      shown = true;
+    }
+    window.addEventListener('scroll', function onScroll() {
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        showPopup();
+        window.removeEventListener('scroll', onScroll);
       }
+    });
+  }
 
-      let shown = false;
-      function showPopup() {
-        if (shown) return;
-        popup.classList.remove('hidden');
-        popup.setAttribute('aria-hidden', 'false');
-        shown = true;
-      }
+  function hidePopup() {
+    popup.classList.add('hidden');
+    popup.setAttribute('aria-hidden', 'true');
+  }
 
-      function hidePopup() {
-        popup.classList.add('hidden');
-        popup.setAttribute('aria-hidden', 'true');
-      }
-
-      window.addEventListener('scroll', function onScroll() {
-        if (window.scrollY > SCROLL_THRESHOLD) {
-          showPopup();
-          // Remove listener after showing once
-          window.removeEventListener('scroll', onScroll);
-        }
-      });
-
-      closeBtn.addEventListener('click', hidePopup);
-      useCode.addEventListener('click', function () {
-        // Copy to clipboard
-        navigator.clipboard?.writeText('TUTTIO15').then(() => {
-          useCode.textContent = 'Copied';
-          hidePopup();
-          localStorage.setItem('tuttio_coupon_seen', 'true');
-        }, () => {
-          // fallback
-          alert('Code: TUTTIO15');
-          hidePopup();
-          localStorage.setItem('tuttio_coupon_seen', 'true');
-        });
-      });
-
-      dismissOnce.addEventListener('click', function () {
-        hidePopup();
-        localStorage.setItem('tuttio_coupon_seen', 'true');
-      });
-
-      // Accessibility: close on ESC
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') hidePopup();
-      });
-    })();
-  </script>
+  closeBtn.addEventListener('click', hidePopup);
+  dismissOnce.addEventListener('click', () => {
+    hidePopup();
+    localStorage.setItem('tuttio_coupon_seen', 'true');
+  });
+  useCode.addEventListener('click', () => {
+    navigator.clipboard.writeText('TUTTIO15').then(() => {
+      useCode.textContent = 'Copied';
+      hidePopup();
+      localStorage.setItem('tuttio_coupon_seen', 'true');
+    });
+  });
+  document.addEventListener('keydown', (e) => { if(e.key==='Escape') hidePopup(); });
+</script>
 </body>
 </html>
